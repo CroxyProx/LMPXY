@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Proxy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+    input {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    iframe {
+      margin-top: 30px;
+      width: 100%;
+      height: 80vh;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>GitHub Pages Proxy</h1>
+  <input id="url" placeholder="Enter a website (e.g. example.com)" />
+  <button onclick="go()">Browse</button>
+
+  <iframe id="frame"></iframe>
+
+  <script>
+    function go() {
+      let input = document.getElementById("url").value.trim();
+      if (!input.startsWith("http")) {
+        input = "https://" + input;
+      }
+      const proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(input);
+      document.getElementById("frame").src = proxyUrl;
+    }
+  </script>
+</body>
+</html>
